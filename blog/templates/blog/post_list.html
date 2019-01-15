@@ -1,38 +1,13 @@
-<html>
-    <head>
-        <title>Nikunj Goyal blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Nikunj Goyal Blog</a></h1>
-        </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>first one not writing much</p>
-        </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Not again</p>
-        </div>
-        <div>
+{% extends 'blog/base.html' %}
+{% block content %}
             {% for post in posts %}
-                {{ post }}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.published_date }}</p>
+                    </div>
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
             {% endfor %}
-        </div>
-        <div>
-    <h1><a href="/">Nikunj Goyal Blog</a></h1>
-</div>
-
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-    </body>
-</html>
+{% endblock %}
+        
